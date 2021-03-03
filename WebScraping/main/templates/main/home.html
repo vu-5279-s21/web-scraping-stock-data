@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Stock Scraping & Data Analysis</title>
+</head>
+<body>
+<section class="title">
+        <h1 class="name">Web Stock Scraping & Data Analysis</h1>
+        <p id="home"><strong>Home</strong></p>
+        <a href="{% url 'about' %}" id="about"><stong>About</stong></a>
+
+</section>
+
+<div class="search">
+    <h3 id="header"> <b> To find information about a particular stock, enter the company abbreviation below </b></h3>
+    <form method="GET">
+        <label for="company"></label>
+        <input type="text" name="company" id="company" placeholder="company...">
+        <input type="submit" value="submit"/>
+    </form>
+</div>
+
+<div class="recApp">
+    <h3>
+        To find recommendations for particular stocks, click here: <a href="{% url 'recApp' %}">Recommender</a>
+    </h3>
+</div>
+
+</body>
+</html>
+
+<style>
+    .name {
+    width: 100%;
+    margin: auto;
+    font-family: Roboto, serif;
+    text-align: center;
+    font-size: 60px;
+    /* background-color: darkgray; */
+}
+
+    #about {
+    float: right;
+    padding-right: 15px;
+    font-size: 30px;
+}
+
+    #home {
+    float: left;
+    padding-left: 15px;
+    font-size: 30px;
+}
+
+    section {
+    background-color: gray;
+    height: 20%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    clear: both;
+}
+
+    .search {
+        padding-top: 200px;
+        box-sizing: border-box;
+        text-align: center;
+        margin: 0;
+    }
+
+    .recApp{
+        text-align: center;
+        padding-top: 50px;
+        margin: 0;
+    }
+
+
+
+</style>
