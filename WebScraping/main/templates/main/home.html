@@ -23,7 +23,7 @@
         <input type="submit" value="submit"/>
     </form>
 </div>
-
+{{ result|safe }}
 <div class="recApp">
     <h3>
         To find recommendations for particular stocks, click here: <a href="{% url 'recApp' %}">Recommender</a>

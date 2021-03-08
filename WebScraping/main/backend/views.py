@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
+from django.template.defaultfilters import safe
 from pytz import timezone
+import pandas as pd
 
 # Create your views here.
 
@@ -13,7 +15,7 @@ def get_text(company):
     return page
 
 def home(request):
-    text = None
+    result = ''
     # if we submit form then all attributes will be stored here
     if 'company' in request.GET:
         company = request.GET.get('company')
@@ -54,10 +56,17 @@ def home(request):
             table_dict[metric_names[i]] = metric_values[i]
 
         print(table_dict)
+
+        stock_data = pd.DataFrame({
+            'name': metric_names,
+            'value': metric_values
+        })
+
+        result = stock_data.to_html(header=False, index=False)
        # previous_close = soup.find('span', attrs={'class_': 'Trsdu(0.3s) '}).get_text
        # print(previous_close)
 
-    return render(request, 'main/home.html')
+    return render(request, 'main/home.html', {'result': result})
 
 def recApp(request):
     # We can likely put our algorithm for the recommendation system here
