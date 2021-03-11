@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,14 +8,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web Stock Scraping & Data Analysis</title>
 </head>
+
 <body>
-<section class="title">
-        <h1 class="name">Web Stock Scraping & Data Analysis</h1>
-        <p id="home"><strong>Home</strong></p>
-        <a href="{% url 'about' %}" id="about"><stong>About</stong></a>
 
-</section>
+<!-- Interactive Sidebar -->
+<div class="sidebar" style="display:none" id="mysidebar">
+    <a href="javascript:void(0)" onclick="closeFunction()" class="close">Close &times;</a>
+    <a href="{% url 'home' %}" class="link">Home</a>
+    <a href="{% url 'about' %}" class="link">About</a>
+    <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a>
+</div>
 
+<div class="title">
+    <button id="button" onclick="openFunction()">&#9776;</button>
+    <div class="name">
+        <h1>Web Stock Scraping & Data Analysis</h1>
+    </div>
+</div>
+
+<!-- Input field to enter a company name -->
 <div class="search">
     <h3 id="header"> <b> To find information about a particular stock, enter the company abbreviation below </b></h3>
     <form method="GET">
@@ -22,48 +34,53 @@
         <input type="text" name="company" id="company" placeholder="company...">
         <input type="submit" value="submit"/>
     </form>
-</div>
-
-<div class="recApp">
-    <h3>
-        To find recommendations for particular stocks, click here: <a href="{% url 'recApp' %}">Recommender</a>
-    </h3>
+    <p style="text-align: center"> {{ result|safe }} </p>
 </div>
 
 </body>
 </html>
 
+<!-- CSS -->
 <style>
     .name {
-    width: 100%;
-    margin: auto;
-    font-family: Roboto, serif;
-    text-align: center;
-    font-size: 60px;
+        width: 100%;
+        margin: auto;
+        font-family: Roboto, serif;
+        text-align: center;
+        font-size: 30px;
     /* background-color: darkgray; */
-}
+    }
 
-    #about {
-    float: right;
-    padding-right: 15px;
-    font-size: 30px;
-}
+   /* #about {
+        float: right;
+        padding-right: 15px;
+        font-size: 30px;
+    } */
 
-    #home {
-    float: left;
-    padding-left: 15px;
-    font-size: 30px;
-}
+   /* .link {
+        color: black;
+        text-decoration: none;
+    } */
 
-    section {
-    background-color: gray;
-    height: 20%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    clear: both;
-}
+   /* .link:hover{
+        text-decoration: underline;
+    } */
+
+    /* #home {
+        float: left;
+        padding-left: 15px;
+        font-size: 30px;
+    } */
+
+    .title {
+        background-color: gray;
+        height: 20%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        clear: both;
+    }
 
     .search {
         padding-top: 200px;
@@ -72,12 +89,61 @@
         margin: 0;
     }
 
-    .recApp{
-        text-align: center;
-        padding-top: 50px;
-        margin: 0;
+    #mysidebar{
+        width: 25%;
     }
 
+    #button{
+        background-color: gray;
+        font-size: 24px;
+    }
 
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: gray;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
 
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: black;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: white;
+    }
+
+    .sidebar .close {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 25px;
+      margin-left: 50px;
+      color: black;
+    }
 </style>
+
+<!-- Javascript Functions -->
+<script>
+    function openFunction() {
+        document.getElementById("mysidebar").style.width = "20%";
+        document.getElementById("mysidebar").style.display = "block";
+    }
+
+    function closeFunction() {
+        document.getElementById("mysidebar").style.width = "0";
+        document.getElementById("mysidebar").style.display = "none";
+    }
+
+</script>
