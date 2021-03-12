@@ -17,18 +17,19 @@
     <a href="{% url 'home' %}" class="link">Home</a>
     <a href="{% url 'about' %}" class="link">About</a>
     <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a>
+    <a href="{% url 'home' %}" class="link">Historical Data</a>
 </div>
 
 <div class="title">
     <button id="button" onclick="openFunction()">&#9776;</button>
-    <div class="name">
-        <h1>Web Stock Scraping & Data Analysis</h1>
+    <div id="name">
+        <h1 id="header">Web Stock Scraping & Data Analysis</h1>
     </div>
 </div>
 
 <!-- Input field to enter a company name -->
-<div class="search">
-    <h3 id="header"> <b> To find information about a particular stock, enter the company abbreviation below </b></h3>
+<div id="search">
+    <h3 id="blurb"> <b> To find information about a particular stock, enter the company name or ticker below </b></h3>
     <form method="GET">
         <label for="company"></label>
         <input type="text" name="company" id="company" placeholder="company...">
@@ -40,41 +41,22 @@
 </body>
 </html>
 
+<!-- Should we move these sections to another file? -->
+
 <!-- CSS -->
 <style>
-    .name {
+    #name {
         width: 100%;
         margin: auto;
         font-family: Roboto, serif;
         text-align: center;
         font-size: 30px;
-    /* background-color: darkgray; */
+        position: relative;
     }
 
-   /* #about {
-        float: right;
-        padding-right: 15px;
-        font-size: 30px;
-    } */
-
-   /* .link {
-        color: black;
-        text-decoration: none;
-    } */
-
-   /* .link:hover{
-        text-decoration: underline;
-    } */
-
-    /* #home {
-        float: left;
-        padding-left: 15px;
-        font-size: 30px;
-    } */
-
     .title {
-        background-color: gray;
-        height: 20%;
+        background-color: slategray;
+        height: 25%;
         position: absolute;
         top: 0;
         left: 0;
@@ -82,7 +64,11 @@
         clear: both;
     }
 
-    .search {
+    #blurb {
+        font-size: 25px;
+    }
+
+    #search {
         padding-top: 200px;
         box-sizing: border-box;
         text-align: center;
@@ -94,8 +80,13 @@
     }
 
     #button{
-        background-color: gray;
-        font-size: 24px;
+        background-color: slategray;
+        font-size: 40px;
+        border: none;
+    }
+
+    #button:hover {
+        cursor: pointer;
     }
 
     .sidebar {
@@ -105,7 +96,7 @@
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: gray;
+      background-color: slategray;
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
@@ -132,6 +123,27 @@
       margin-left: 50px;
       color: black;
     }
+
+    input[type='text']{
+        height: 30px;
+        width: 20%;
+        border: 2px solid black;
+        font-size: 20px;
+    }
+
+    input[type='submit']{
+        height: 40px;
+        width: 20%;
+        border: 2px solid black;
+        color: white;
+        background-color: black;
+        font-size: 20px;
+    }
+
+    input[type='submit']:hover{
+        cursor: pointer;
+    }
+
 </style>
 
 <!-- Javascript Functions -->
@@ -139,11 +151,15 @@
     function openFunction() {
         document.getElementById("mysidebar").style.width = "20%";
         document.getElementById("mysidebar").style.display = "block";
+        document.getElementById("header").style.marginLeft = "20%";
+        document.getElementById("search").style.marginLeft = "20%";
     }
 
     function closeFunction() {
         document.getElementById("mysidebar").style.width = "0";
         document.getElementById("mysidebar").style.display = "none";
+        document.getElementById("header").style.marginLeft = "0";
+        document.getElementById("search").style.marginLeft = "0";
     }
 
 </script>
