@@ -4,14 +4,23 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from datetime import datetime
 from pytz import timezone
+import time
 
 '''
 Below is the scrapper of historical data which contains brief market information for the past year
 '''
+driver = webdriver.Chrome('c:\\Program Files\\chromedriver.exe')
 stock_abbr = 'TSLA'
-historical_data_page = requests.get('https://finance.yahoo.com/quote/' + stock_abbr + '/history?p=' + stock_abbr)
+driver.get('https://finance.yahoo.com/quote/' + stock_abbr + '/history?p=' + stock_abbr)
 
-historical_soup = BeautifulSoup(historical_data_page.content, 'html.parser')
+for i in range(0, 3):
+    driver.execute_script("window.scrollBy(0,5000)")
+    time.sleep(2)
+
+html_page = driver.page_source
+driver.quit()
+
+historical_soup = BeautifulSoup(html_page, 'html.parser')
 historical_table = historical_soup.find(class_='W(100%) M(0)')
 dates_past_year = historical_table.find_all(class_='Py(10px) Ta(start) Pend(10px)')
 stock_price_volume = historical_table.find_all(class_='Py(10px) Pstart(10px)')
