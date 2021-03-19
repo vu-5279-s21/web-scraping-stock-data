@@ -5,17 +5,111 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BAasic Stock Evaluation</title>
+    <title>Basic Stock Evaluation</title>
 </head>
 <body>
 
-<h2 id="header">Basic Stock Evaluation</h2>
+<!-- Interactive Sidebar -->
+<div class="sidebar" style="display:none" id="mysidebar">
+    <a href="javascript:void(0)" onclick="closeFunction()" class="close">Close &times;</a>
+    <a href="{% url 'home' %}" class="link">Home</a>
+    <a href="{% url 'about' %}" class="link">About</a>
+    <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a>
+    <a href="{% url 'home' %}" class="link">Historical Data</a>
+</div>
+
+<div class="title">
+    <button id="button" onclick="openFunction()">&#9776;</button>
+    <div id="name">
+        <h1 id="header">Basic Stock Evaluation</h1>
+    </div>
+</div>
 
 </body>
 </html>
 
 <style>
-    #header{
+    #name {
+        width: 100%;
+        margin: auto;
+        font-family: Roboto, serif;
         text-align: center;
+        font-size: 30px;
+        position: relative;
     }
+
+    .title {
+        background-color: slategray;
+        height: 25%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        clear: both;
+    }
+
+    #mysidebar{
+        width: 25%;
+    }
+
+    #button{
+        background-color: slategray;
+        font-size: 40px;
+        border: none;
+    }
+
+    #button:hover {
+        cursor: pointer;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: slategray;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: black;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: white;
+    }
+
+    .sidebar .close {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 25px;
+      margin-left: 50px;
+      color: black;
+    }
+
 </style>
+
+<script>
+    function openFunction() {
+        document.getElementById("mysidebar").style.width = "20%";
+        document.getElementById("mysidebar").style.display = "block";
+        document.getElementById("header").style.marginLeft = "20%";
+    }
+
+    function closeFunction() {
+        document.getElementById("mysidebar").style.width = "0";
+        document.getElementById("mysidebar").style.display = "none";
+        document.getElementById("header").style.marginLeft = "0";
+    }
+
+</script>
