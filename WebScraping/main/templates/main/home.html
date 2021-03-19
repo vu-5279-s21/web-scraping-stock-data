@@ -31,13 +31,17 @@
 <!-- Input field to enter a company name -->
 <div id="search">
     <h3 id="blurb"> <b> To find information about a particular stock, enter the company name or ticker below </b></h3>
-    <form method="GET">
+    <form method="GET"> <!-- Action will render the results page when submit is pressed -->
         <label for="company"></label>
-        <input type="text" name="company" id="company" placeholder="company...">
-        <input type="submit" value="submit"/>
+        <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="company..." required>
+        <input type="submit" value="submit" />
     </form>
-    <p style="text-align: center"> {{ result|safe }} </p>
+    <h2 id="center">
+        Company Requested: <span id="ticker" />
+    </h2>
 </div>
+
+<section style="align-content: center"> {{ result|safe }} </section>
 
 </body>
 </html>
@@ -74,6 +78,7 @@
         box-sizing: border-box;
         text-align: center;
         margin: 0;
+        padding-bottom: 20px;
     }
 
     #mysidebar{
@@ -162,5 +167,10 @@
         document.getElementById("header").style.marginLeft = "0";
         document.getElementById("search").style.marginLeft = "0";
     }
+
+    window.addEventListener('load', () => {
+        const params = (new URL(document.location)).searchParams;
+        document.getElementById('ticker').innerHTML = params.get('company');
+    })
 
 </script>
