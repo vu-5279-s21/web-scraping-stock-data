@@ -64,7 +64,9 @@ def home(request):
         })
 
         result = stock_data.to_html(header=False, index=False)
-    return render(request, 'main/home.html', {'result': result})
+        return render(request, 'main/home.html', {'result': result})
+    else:
+        return render(request, 'main/home.html')
 
 def recApp(request):
     # We can likely put our algorithm for the recommendation system here
@@ -74,3 +76,7 @@ def recApp(request):
 def about(request):
     # Just render the html if we want an about page
     return render(request, 'main/about.html')
+
+def results(request):
+    return render(request, 'main/results.html')
+
