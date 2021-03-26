@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -34,25 +35,31 @@ num_list_insert = 0
 tmp_lst = []
 for i in range(len(stock_list)):
     if i%6 == 0:
-        tmp_dic = {'Open': stock_list[i]}
+        tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
     elif i%6 == 1:
-        tmp_dic = {'High': stock_list[i]}
+        tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
     elif i%6 == 2:
-        tmp_dic = {'Low': stock_list[i]}
+        tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
     elif i%6 == 3:
-        tmp_dic = {'Close': stock_list[i]}
+        tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
     elif i%6 == 4:
-        tmp_dic = {'Adj Close': stock_list[i]}
+        tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
-    elif i%6 == 5:
-        tmp_dic = {'Volume': stock_list[i]}
+        i += 1
         tmp_lst.append(tmp_dic)
         hist_data_table[dates_list[num_list_insert]] = tmp_lst
         num_list_insert += 1
         tmp_lst = []
 
-print(hist_data_table)
+
+hist_data_frame = pd.DataFrame.from_dict(hist_data_table)
+hist_data_frame = hist_data_frame.astype(float)
+hist_data_frame = hist_data_frame.T
+hist_data_frame = hist_data_frame.iloc[::-1]
+print(hist_data_frame)
+hist_data_frame.plot(grid='True')
+plt.show()
