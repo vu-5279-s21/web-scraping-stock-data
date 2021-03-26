@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -51,7 +53,7 @@
   					<p>We find the price of stocks currently and show their historical data!</p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="stocks.jpg" class="img-responsive" alt="image">
+  					<img src="{% static 'images/stocks.jpeg' %}" class="img-responsive" alt="image">
   				</div>
   			</div><!-- End row -->
 
@@ -59,10 +61,11 @@
   			<div class="row">
   				<div class="col-sm-8">
   					<h3>Web Scraping</h3>
-  					<p>We scrape the web for mentions of stocks in highly cited pages!</p>
+  					<p>Web scrape the web for mentions of stocks in highly cited pages!</p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="scraping.jpg" class="img-responsive" alt="image">
+                    {% load static %}
+  					<img src="{% static "images/scraping.jpg" %}" class="img-responsive" alt="image">
   				</div>
   			</div><!-- End row -->
 
@@ -73,7 +76,7 @@
   					<p>We then do a sentiment analysis to find whether or not the stock you picked has a positive or negative engagement!</p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="sentiment.jpg" class="img-responsive" alt="image">
+  					<img src="{% static 'images/sentiment.jpg' %}" class="img-responsive" alt="image">
   				</div>
   			</div><!-- End row -->
 
@@ -94,21 +97,21 @@
 
   				<div class="carousel-inner">
   					<div class="item active">
-  						<img src="syed.jpg" alt="Text of the image">
+  						<img src="{% static 'images/syed.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
   							<p>Syed Rahman</p>
   						</div>
   					</div>
 
   					<div class="item">
-  						<img src="chris.jpg" alt="Text of the image">
+  						<img src="{% static 'images/chris.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
   							<p>Chris Rorex</p>
   						</div>
   					</div>
 
   					<div class="item">
-  						<img src="may.jpg" alt="Text of the image">
+  						<img src="{% static 'images/may.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
   							<p>May Liu</p>
 
@@ -116,7 +119,7 @@
   					</div>
 
   					<div class="item">
-  						<img src="derek.jpg" alt="Text of the image">
+  						<img src="{% static 'images/derek.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
 							<p>Derek Pang</p>
 
@@ -212,6 +215,7 @@
       margin-left: 50px;
       color: black;
     }
+
 
 </style>
 

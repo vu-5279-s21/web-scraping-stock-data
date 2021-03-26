@@ -1,5 +1,7 @@
+{% load static %}
+
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +23,7 @@
     <a href="{% url 'home' %}" class="link">Historical Data</a>
 </div>
 
+<!-- Title of Page -->
 <div class="title">
     <button id="button" onclick="openFunction()">&#9776;</button>
     <div id="name">
@@ -28,21 +31,58 @@
     </div>
 </div>
 
+<div>
 <!-- Input field to enter a company name -->
 <div id="search">
-    <h3 id="blurb"> <b> To find information about a particular stock, enter the company name or ticker below </b></h3>
-    <form method="GET"> <!-- Action will render the results page when submit is pressed -->
+    <h3 id="blurb">
+        <b>Let's get started!</b> <br>
+        <b> To find information about a particular stock, enter the company name or ticker below </b>
+    </h3>
+    <form method="GET">
         <label for="company"></label>
         <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="company..." required>
-        <input type="submit" value="submit" />
+        <input type="submit" value="Explore Stocks!&#8594;" />
     </form>
-    <h2 id="center">
-        Company Requested: <span id="ticker" />
-    </h2>
 </div>
 
-<section style="align-content: center"> {{ result|safe }} </section>
+<!-- Navigate to the page to see all of the tickers -->
 
+<!-- New input field with searchable dropdown
+<div class="dropdown" style="text-align: center">
+    <div id="mydropdown" class="dropdown-section">
+        <input type="text" name="company1" id="company1" value="{{ request.GET.company1 }}" placeholder="company..."
+               onclick="openDropdown()" onkeyup="filterFunction()" required>
+        <input type="submit" value="Explore Stocks!&#8594;" />
+        <a>A</a>
+        <a>B</a>
+        <a>C</a>
+        <a>C</a>
+        <a>B</a>
+    </div>
+</div>
+-->
+
+<!-- Page Content -->
+<div class="text">
+
+    <div style="padding-top: 5px;text-align: center;padding-bottom: 20px">
+        <h3>Sample Graph Output</h3>
+        <p>Add a carousel or something here </p>
+    </div>
+
+    <div style="padding-bottom: 250px">
+        <div id="words">
+            How to use this page: <br>
+            Enter the ticker for the company in the field above. Press explore stocks and you're done!
+            Don't know the ticker for the company you're looking for? No worries -- <a href="{% url 'home' %}" class="link">Click Here!</a>
+        </div>
+
+        <section id="image" style="display: inline-block;vertical-align: middle;float: right">
+        </section>
+    </div>
+
+</div>
+</div>
 </body>
 </html>
 
@@ -61,7 +101,7 @@
 
     .title {
         background-color: slategray;
-        height: 25%;
+        height: 200px;
         position: absolute;
         top: 0;
         left: 0;
@@ -69,16 +109,26 @@
         clear: both;
     }
 
+    .text{
+        padding-top: 35px;
+    }
+
+    #words{
+        text-align: left;
+        float: left;
+        width: 25%;
+        font-size: 30px;
+    }
+
     #blurb {
         font-size: 25px;
     }
 
     #search {
-        padding-top: 200px;
+        padding-top: 170px;
         box-sizing: border-box;
         text-align: center;
         margin: 0;
-        padding-bottom: 20px;
     }
 
     #mysidebar{
@@ -134,15 +184,17 @@
         height: 30px;
         width: 20%;
         border: 2px solid black;
+        border-radius: 12px;;
         font-size: 20px;
     }
 
     input[type='submit']{
         height: 40px;
         width: 20%;
-        border: 2px solid black;
+        border: 2px solid dodgerblue;
+        border-radius: 12px;
         color: white;
-        background-color: black;
+        background-color: dodgerblue;
         font-size: 20px;
     }
 
@@ -159,6 +211,7 @@
         document.getElementById("mysidebar").style.display = "block";
         document.getElementById("header").style.marginLeft = "20%";
         document.getElementById("search").style.marginLeft = "20%";
+        document.getElementById("words").style.marginLeft = "20%";
     }
 
     function closeFunction() {
@@ -166,11 +219,11 @@
         document.getElementById("mysidebar").style.display = "none";
         document.getElementById("header").style.marginLeft = "0";
         document.getElementById("search").style.marginLeft = "0";
+        document.getElementById("words").style.marginLeft = "0";
     }
 
-    window.addEventListener('load', () => {
-        const params = (new URL(document.location)).searchParams;
-        document.getElementById('ticker').innerHTML = params.get('company');
-    })
+   // function openDropdown(){
+     //   document.getElementById("mydropdown").classList.toggle("show");
+  //  }
 
 </script>

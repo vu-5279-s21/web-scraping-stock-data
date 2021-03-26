@@ -64,7 +64,7 @@ def home(request):
         })
 
         result = stock_data.to_html(header=False, index=False)
-        return render(request, 'main/home.html', {'result': result})
+        return render(request, 'main/results.html', {'result': result})
     else:
         return render(request, 'main/home.html')
 

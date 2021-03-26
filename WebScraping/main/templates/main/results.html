@@ -35,7 +35,7 @@
     </div>
 </div>
 
-    <div id="container", style="padding-top: 200px">
+    <div id="container" style="padding-top: 200px">
 
 
 		<section>
@@ -57,6 +57,9 @@
   					<h3>Sentiment Analysis</h3>
 		</section>
 
+        <h2 id="center">
+            Company Requested: <span id="ticker" />
+        </h2>
         <section style="align-content: center"> {{ result|safe }} </section>
 	</div>
 			<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -154,5 +157,10 @@
         document.getElementById("header").style.marginLeft = "0";
         document.getElementById("search").style.marginLeft = "0";
     }
+
+    window.addEventListener('load', () => {
+        const params = (new URL(document.location)).searchParams;
+        document.getElementById('ticker').innerHTML = params.get('company');
+    })
 
 </script>
