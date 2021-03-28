@@ -34,32 +34,53 @@ hist_data_table = {}
 num_list_insert = 0
 tmp_lst = []
 for i in range(len(stock_list)):
-    if i%6 == 0:
+    if i % 6 == 0:
         tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
-    elif i%6 == 1:
+    elif i % 6 == 1:
         tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
-    elif i%6 == 2:
+    elif i % 6 == 2:
         tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
-    elif i%6 == 3:
+    elif i % 6 == 3:
         tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
-    elif i%6 == 4:
+    elif i % 6 == 4:
         tmp_dic = float(stock_list[i])
         tmp_lst.append(tmp_dic)
         i += 1
-        tmp_lst.append(tmp_dic)
+        # tmp_lst.append(tmp_dic)
         hist_data_table[dates_list[num_list_insert]] = tmp_lst
         num_list_insert += 1
         tmp_lst = []
 
-
 hist_data_frame = pd.DataFrame.from_dict(hist_data_table)
 hist_data_frame = hist_data_frame.astype(float)
+hist_data_frame.index = ['Open', 'High', 'Low', 'Close', 'Adj Close']
 hist_data_frame = hist_data_frame.T
 hist_data_frame = hist_data_frame.iloc[::-1]
-print(hist_data_frame)
 hist_data_frame.plot(grid='True')
+
+hist_data_frame['5-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=5).mean()
+hist_data_frame['10-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=10).mean()
+hist_data_frame['20-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=20).mean()
+hist_data_frame['50-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=50).mean()
+hist_data_frame['100-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=100).mean()
+print(hist_data_frame)
+
+five_day = hist_data_frame[['Adj Close', '5-Day Moving Average']]
+ten_day = hist_data_frame[['Adj Close', '10-Day Moving Average']]
+twenty_day = hist_data_frame[['Adj Close', '20-Day Moving Average']]
+fifty_day = hist_data_frame[['Adj Close', '50-Day Moving Average']]
+hundred_day = hist_data_frame[['Adj Close', '100-Day Moving Average']]
+short_long = hist_data_frame[['Adj Close', '20-Day Moving Average', '50-Day Moving Average', '100-Day Moving Average']]
+moving_averages = hist_data_frame[['5-Day Moving Average', '10-Day Moving Average', '20-Day Moving Average', '50-Day Moving Average', '100-Day Moving Average']]
+five_day.plot()
+ten_day.plot()
+twenty_day.plot()
+fifty_day.plot()
+hundred_day.plot()
+short_long.plot()
+moving_averages.plot()
 plt.show()
