@@ -17,7 +17,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="background-color: antiquewhite">
 
 <!-- Interactive Sidebar -->
 <div class="sidebar" style="display:none" id="mysidebar">
@@ -28,43 +28,55 @@
     <a href="{% url 'home' %}" class="link">Historical Data</a>
 </div>
 
+<!-- Title of Page -->
 <div class="title">
     <button id="button" onclick="openFunction()">&#9776;</button>
     <div id="name">
         <h1 id="header">Results Page</h1>
     </div>
+    <div id="underline">
+    </div>
 </div>
 
-    <div id="container" style="padding-top: 200px">
-
-
+    <!-- Content Header -->
+    <div id="container" style="padding-top: 80px;padding-left: 80px">
 		<section>
 			<div class="page-header" id="About me">
   				<h2>Let's take a look at the results</h2>
   			</div><!-- End Page Header -->
 
+            <!-- Content -->
   			<div class="row">
   				<div class="col-sm-8">
   					<h3>Stocks and Historical Pricing</h3>
-
   				</div>
   				<div class="col-sm-4">
   				</div>
   			</div><!-- End row -->
+
+            <!-- Content -->
   			<div class="row">
   				<div class="col-sm-8">
   					<h3>Web Scraping</h3>
   					<h3>Sentiment Analysis</h3>
+                </div>
+            </div>
 		</section>
 
-        <h2 id="center">
-            Company Requested: <span id="ticker" />
+        <!-- Pandas Table -->
+        <div style="padding-left: 500px; padding-bottom: 100px">
+            <h2 id="center">
+                Company Requested: <span id="ticker" />
         </h2>
-        <section style="align-content: center"> {{ result|safe }} </section>
+        <section> {{ result|safe }} </section>
+        </div>
 	</div>
-			<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 
 <div class="container text-center">
             <h4>Volume: The volume is the amount of shares trader over the course a trading day</h4>
@@ -75,12 +87,9 @@
             <h4>Forward Dividend & Yield: The FD&Y is a percentage of a company's stock price that it expects to payout as dividends</h4>
             <h4>Ex Dividend Date: The Ex Dividend Date is the date when the company dividend allocation is provided</h4>
             <h4>1y Target Est: The 1y Target estimate is the price the share is predicted to be at by financial institutions in one year</h4>
-        </div>
+</div>
 </body>
-</html>
-
-<!-- Should we move these sections to another file? -->
- <footer>
+ <footer id="footer">
       <hr>
         <div class="container text-center">
         <h3>Thanks for visiting</h3>
@@ -88,26 +97,29 @@
         <hr>
         <p>&copy; Copyright 2021</p>
       </div><!-- end Container-->
-    </footer>
+ </footer>
+</html>
+
+<!-- Should we move these sections to another file? -->
 <!-- CSS -->
 <style>
     #name {
-        width: 100%;
         margin: auto;
         font-family: Roboto, serif;
         text-align: center;
         font-size: 30px;
         position: relative;
+        width: 95%;
+        float: right;
     }
 
     .title {
-        background-color: slategray;
-        height: 25%;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         clear: both;
+        height: 10%;
     }
 
     #mysidebar{
@@ -115,7 +127,7 @@
     }
 
     #button{
-        background-color: slategray;
+        background-color: antiquewhite;
         font-size: 40px;
         border: none;
     }
@@ -131,7 +143,7 @@
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: slategray;
+      background-color: black;
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
@@ -141,13 +153,13 @@
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 25px;
-      color: black;
+      color: white;
       display: block;
       transition: 0.3s;
     }
 
     .sidebar a:hover {
-      color: white;
+        text-decoration: underline;
     }
 
     .sidebar .close {
@@ -156,7 +168,14 @@
       right: 25px;
       font-size: 25px;
       margin-left: 50px;
-      color: black;
+      color: white;
+    }
+
+    #underline{
+        border-bottom: 1px solid black;
+        display: block;
+        padding-top: 50px;
+        width: 100%;
     }
 
 </style>
@@ -166,20 +185,19 @@
     function openFunction() {
         document.getElementById("mysidebar").style.width = "20%";
         document.getElementById("mysidebar").style.display = "block";
-        document.getElementById("header").style.marginLeft = "20%";
-        document.getElementById("search").style.marginLeft = "20%";
+        document.getElementById("container").style.marginLeft = "20%";
+        document.getElementById("footer").style.marginLeft = "20%";
     }
 
     function closeFunction() {
         document.getElementById("mysidebar").style.width = "0";
         document.getElementById("mysidebar").style.display = "none";
-        document.getElementById("header").style.marginLeft = "0";
-        document.getElementById("search").style.marginLeft = "0";
+        document.getElementById("container").style.marginLeft = "0";
+        document.getElementById("footer").style.marginLeft = "0";
     }
 
     window.addEventListener('load', () => {
         const params = (new URL(document.location)).searchParams;
         document.getElementById('ticker').innerHTML = params.get('company');
     })
-
 </script>

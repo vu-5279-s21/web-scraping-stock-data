@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body style="background-color: antiquewhite">
 
 <!-- Interactive Sidebar -->
 <div class="sidebar" style="display:none" id="mysidebar">
@@ -27,40 +27,31 @@
 <div class="title">
     <button id="button" onclick="openFunction()">&#9776;</button>
     <div id="name">
-        <h1 id="header">Web Stock Scraping & Data Analysis</h1>
+        <h4 id="header">Web Stock Scraping & Data Analysis</h4>
+    </div>
+    <div id="underline">
     </div>
 </div>
 
 <div>
 <!-- Input field to enter a company name -->
 <div id="search">
-    <h3 id="blurb">
-        <b>Let's get started!</b> <br>
-        <b> To find information about a particular stock, enter the company name or ticker below </b>
-    </h3>
+    <h1 id="blurb1">
+        Company Stock Information Right at Your <span style="color: red"> Fingertips </span>
+    </h1>
+    <p id="blurb2">
+        Let's get started! <br>
+        To find information about a particular stock, enter the company name or ticker below <br>
+    </p>
     <form method="GET">
         <label for="company"></label>
-        <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="company..." required>
+        <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="Ticker..." required>
         <input type="submit" value="Explore Stocks!&#8594;" />
     </form>
+    <p id="blurb2">
+        If you are unsure of the company's ticker, No worries -- <a href="{% url 'tickers' %}" class="link2">Click Here!</a>
+    </p>
 </div>
-
-<!-- Navigate to the page to see all of the tickers -->
-
-<!-- New input field with searchable dropdown
-<div class="dropdown" style="text-align: center">
-    <div id="mydropdown" class="dropdown-section">
-        <input type="text" name="company1" id="company1" value="{{ request.GET.company1 }}" placeholder="company..."
-               onclick="openDropdown()" onkeyup="filterFunction()" required>
-        <input type="submit" value="Explore Stocks!&#8594;" />
-        <a>A</a>
-        <a>B</a>
-        <a>C</a>
-        <a>C</a>
-        <a>B</a>
-    </div>
-</div>
--->
 
 <!-- Page Content -->
 <div class="text">
@@ -70,57 +61,53 @@
         <p>Add a carousel or something here </p>
     </div>
 
-    <div style="padding-bottom: 250px">
-        <div id="words">
-            How to use this page: <br>
-            Enter the ticker for the company in the field above. Press explore stocks and you're done!
-            Don't know the ticker for the company you're looking for? No worries -- <a href="{% url 'home' %}" class="link">Click Here!</a>
-        </div>
-
-        <section id="image" style="display: inline-block;vertical-align: middle;float: right">
-        </section>
-
-    </div>
-
 </div>
 </div>
 
-</body>
-
-</html>
-
-<!-- Should we move these sections to another file? -->
- <footer>
+ <footer id="foot">
       <hr>
         <div class="container text-center">
         <h3>Thanks for visiting</h3>
         <p>This material and all its applications are meant for educational purposes only and not financial advice</p>
         <hr>
         <p>&copy; Copyright 2021</p>
-
       </div><!-- end Container-->
+ </footer>
 
+</body>
 
-    </footer>
+</html>
+
+<!-- Should we move these sections to another file? -->
+
 <!-- CSS -->
 <style>
     #name {
-        width: 100%;
+        width: 95%;
         margin: auto;
         font-family: Roboto, serif;
-        text-align: center;
         font-size: 30px;
         position: relative;
+        float: right;
+        text-align: right;
+        padding-right: 10px;
+        padding-top: 30px;
     }
 
     .title {
-        background-color: slategray;
-        height: 200px;
+        height: 20px;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         clear: both;
+    }
+
+    #underline{
+        border-bottom: 1px solid black;
+        display: block;
+        padding-top: 50px;
+        width: 100%;
     }
 
     .text{
@@ -134,12 +121,16 @@
         font-size: 30px;
     }
 
-    #blurb {
-        font-size: 25px;
+    #blurb1{
+        font-size: 55px;
+    }
+
+    #blurb2 {
+        font-size: 35px;
     }
 
     #search {
-        padding-top: 170px;
+        padding-top: 100px;
         box-sizing: border-box;
         text-align: center;
         margin: 0;
@@ -150,7 +141,7 @@
     }
 
     #button{
-        background-color: slategray;
+        background-color: antiquewhite;
         font-size: 40px;
         border: none;
     }
@@ -166,23 +157,32 @@
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: slategray;
+      background-color: black;
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
+    }
+
+    .link2{
+        color: black;
+        text-decoration: none;
+    }
+
+    .link2:hover{
+        text-decoration: underline black;
     }
 
     .sidebar a {
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 25px;
-      color: black;
+      color: white;
       display: block;
       transition: 0.3s;
     }
 
     .sidebar a:hover {
-      color: white;
+        text-decoration: underline;
     }
 
     .sidebar .close {
@@ -191,12 +191,12 @@
       right: 25px;
       font-size: 25px;
       margin-left: 50px;
-      color: black;
+      color: white;
     }
 
     input[type='text']{
         height: 30px;
-        width: 20%;
+        width: 25%;
         border: 2px solid black;
         border-radius: 12px;;
         font-size: 20px;
@@ -226,6 +226,8 @@
         document.getElementById("header").style.marginLeft = "20%";
         document.getElementById("search").style.marginLeft = "20%";
         document.getElementById("words").style.marginLeft = "20%";
+        document.getElementById("output").style.marginLeft = "20%";
+        document.getElementById("foot").style.marginLeft = "20%";
     }
 
     function closeFunction() {
@@ -234,10 +236,8 @@
         document.getElementById("header").style.marginLeft = "0";
         document.getElementById("search").style.marginLeft = "0";
         document.getElementById("words").style.marginLeft = "0";
+        document.getElementById("output").style.marginLeft = "0";
+        document.getElementById("foot").style.marginLeft = "0";
     }
-
-   // function openDropdown(){
-     //   document.getElementById("mydropdown").classList.toggle("show");
-  //  }
 
 </script>

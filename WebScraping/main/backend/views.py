@@ -80,3 +80,5 @@ def about(request):
 def results(request):
     return render(request, 'main/results.html')
 
+def tickers(request):
+    return render(request, 'main/ticker.html')
