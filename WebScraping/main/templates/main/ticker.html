@@ -27,9 +27,9 @@
     </div>
 </div>
 
-<div id="container">
-    <h1>
-        Enter a company name in the input field below to find the company's ticker
+<div>
+    <h1 id="container">
+        Enter a company name in the input field below
     </h1>
 </div>
 
@@ -40,11 +40,33 @@
         <input type="submit" value="Find Ticker!&#8594;" />
     </form>
 </div>
+
+<div id="result">
+    <strong>{{ result | safe}}</strong>
+</div>
+
+<div>
+    <h3 id="wording">
+        Once you've got your ticker, head back <a href="{% url 'home' %}" class="link2">home</a> to find the stock information!
+    </h3>
+</div>
+
+
 </body>
 </html>
 
 <style>
-    #container , #header{
+    #name {
+        margin: auto;
+        font-family: Roboto, serif;
+        text-align: center;
+        font-size: 30px;
+        position: relative;
+        width: 95%;
+        float: right;
+    }
+
+    #container{
         text-align: center;
     }
 
@@ -121,6 +143,35 @@
         margin: 0;
     }
 
+    #result {
+        text-align: center;
+        font-size: 25px;
+        font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+        color: black;
+    }
+
+    #underline{
+        border-bottom: 1px solid black;
+        display: block;
+        padding-top: 50px;
+        width: 100%;
+    }
+
+    .link2{
+        color: red;
+        text-decoration: none;
+    }
+
+    .link2:hover{
+        text-decoration: underline solid red;
+    }
+
+    #wording{
+        padding-top: 35px;
+        text-align: center;
+        font-size: 25px;
+    }
+
 </style>
 
 <script>
@@ -131,6 +182,8 @@
         document.getElementById("container").style.marginLeft = "20%";
         document.getElementById("search").style.marginLeft = "20%";
         document.getElementById("header").style.marginLeft = "20%";
+        document.getElementById("wording").style.marginLeft = "20%";
+        document.getElementById("result").style.marginLeft = "20%";
     }
 
     function closeFunction() {
@@ -139,7 +192,8 @@
         document.getElementById("container").style.marginLeft = "0";
         document.getElementById("search").style.marginLeft = "0";
         document.getElementById("header").style.marginLeft = "0";
-
+        document.getElementById("result").style.marginLeft = "0";
+        document.getElementById("wording").style.marginLeft = "0";
     }
 
 </script>
