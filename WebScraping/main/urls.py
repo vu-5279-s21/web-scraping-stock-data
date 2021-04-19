@@ -7,5 +7,5 @@ urlpatterns = [
     path('about', views.about, name="about"),
     path('results', views.results, name="results"),
     path('ticker', views.tickers, name="tickers"),
-
+    path('historical', views.historical, name="historical")
 ]
