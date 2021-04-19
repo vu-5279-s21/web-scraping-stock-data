@@ -69,18 +69,51 @@ hist_data_frame['50-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(wi
 hist_data_frame['100-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=100).mean()
 print(hist_data_frame)
 
+closingPrices = hist_data_frame.iloc[:, 4]
+
+gainPrices = []
+lossPrices = []
+j = 0
+while j < len(closingPrices):
+    if j == 0:
+        gainPrices.append(0)
+        lossPrices.append(0)
+    else:
+        if (closingPrices[j] - closingPrices[j - 1]) > 0:
+            gainPrices.append(closingPrices[j] - closingPrices[j - 1])
+            lossPrices.append(0)
+        else:
+            gainPrices.append(0)
+            lossPrices.append(closingPrices[j] - closingPrices[j - 1])
+    j += 1
+
+gainsLosses = pd.DataFrame({
+    'Daily Gains': gainPrices,
+    'Daily Losses': lossPrices})
+gainsLosses = gainsLosses.astype(float)
+hist_data_frame = hist_data_frame.iloc[::-1]
+gainsLosses['gainsAvg'] = gainsLosses.iloc[:, 0].rolling(window=14).mean()
+gainsLosses['lossesAvg'] = gainsLosses.iloc[:, 1].rolling(window=14).mean().abs()
+gainsLosses['RS'] = gainsLosses['gainsAvg']/gainsLosses['lossesAvg']
+gainsLosses['RSI'] = 100 - (100/(1+gainsLosses['RS']))
+print(gainsLosses)
+
 five_day = hist_data_frame[['Adj Close', '5-Day Moving Average']]
 ten_day = hist_data_frame[['Adj Close', '10-Day Moving Average']]
 twenty_day = hist_data_frame[['Adj Close', '20-Day Moving Average']]
 fifty_day = hist_data_frame[['Adj Close', '50-Day Moving Average']]
 hundred_day = hist_data_frame[['Adj Close', '100-Day Moving Average']]
 short_long = hist_data_frame[['Adj Close', '20-Day Moving Average', '50-Day Moving Average', '100-Day Moving Average']]
-moving_averages = hist_data_frame[['5-Day Moving Average', '10-Day Moving Average', '20-Day Moving Average', '50-Day Moving Average', '100-Day Moving Average']]
+moving_averages = hist_data_frame[
+    ['5-Day Moving Average', '10-Day Moving Average', '20-Day Moving Average', '50-Day Moving Average',
+     '100-Day Moving Average']]
 five_day.plot()
+# plt.savefig('test.png')
 ten_day.plot()
 twenty_day.plot()
 fifty_day.plot()
 hundred_day.plot()
 short_long.plot()
 moving_averages.plot()
+
 plt.show()
