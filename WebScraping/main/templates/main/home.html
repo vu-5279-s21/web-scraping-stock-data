@@ -20,7 +20,7 @@
     <a href="{% url 'home' %}" class="link">Home</a>
     <a href="{% url 'about' %}" class="link">About</a>
     <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a>
-    <a href="{% url 'home' %}" class="link">Historical Data</a>
+    <a href="{% url 'historical' %}" class="link">Historical Data</a>
 </div>
 
 <!-- Title of Page -->
@@ -48,44 +48,36 @@
         <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="Ticker..." required>
         <input type="submit" value="Explore Stocks!&#8594;" />
     </form>
+
+    <!-- Text after input box -->
     <p id="blurb2">
-        If you are unsure of the company's ticker, No worries -- <a href="{% url 'tickers' %}" class="link2">Click Here!</a>
+        If you are unsure of the company's ticker, no worries -- <a href="{% url 'tickers' %}" class="link2"> <strong>
+                                        Click Here!</strong></a>
+    </p>
+    <p id="hist">Check out our new <a href="{% url 'historical' %}" class="link2"> <strong>historical data feature</strong>
+                    </a> to see historical stock information for your company</p>
+
+    <p id="hist">
+        Check out the day's biggest gainers and losers (Coming soon)!
     </p>
 </div>
-
-<!-- Page Content -->
-<div class="text">
-
-    <div style="padding-top: 5px;text-align: center;padding-bottom: 20px">
-        <h3>Sample Graph Output</h3>
-        <p>Add a carousel or something here </p>
-    </div>
-
 </div>
-
-<!-- <div>
-    <h3>
-        Click <a href="{% url 'tickers' %}" class="link2">Here</a>
-    </h3>
-</div> -->
-
-</div>
-
- <footer id="foot">
-      <hr>
-        <div class="container text-center">
-        <h3>Thanks for visiting</h3>
-        <p>This material and all its applications are meant for educational purposes only and not financial advice</p>
-        <hr>
-        <p>&copy; Copyright 2021</p>
-      </div><!-- end Container-->
- </footer>
-
 </body>
 
-</html>
+<!-- Footer -->
+ <footer>
+      <hr>
+        <div class="container text-center">
+        <div id="footer">
+            <h3>Thanks for visiting</h3>
+            <p>This material and all its applications are meant for educational purposes only and not financial advice</p>
+            <hr>
+            <p>&copy; Copyright 2021</p>
+        </div>
 
-<!-- Should we move these sections to another file? -->
+      </div><!-- end Container-->
+ </footer>
+</html>
 
 <!-- CSS -->
 <style>
@@ -110,18 +102,14 @@
         clear: both;
     }
 
-    #underline{
+    #underline {
         border-bottom: 1px solid black;
         display: block;
         padding-top: 50px;
         width: 100%;
     }
 
-    .text{
-        padding-top: 35px;
-    }
-
-    #words{
+    #words {
         text-align: left;
         float: left;
         width: 25%;
@@ -143,11 +131,11 @@
         margin: 0;
     }
 
-    #mysidebar{
+    #mysidebar {
         width: 25%;
     }
 
-    #button{
+    #button {
         background-color: antiquewhite;
         font-size: 40px;
         border: none;
@@ -170,12 +158,12 @@
       padding-top: 60px;
     }
 
-    .link2{
+    .link2 {
         color: black;
         text-decoration: none;
     }
 
-    .link2:hover{
+    .link2:hover {
         text-decoration: underline black;
     }
 
@@ -223,6 +211,13 @@
         cursor: pointer;
     }
 
+    #hist {
+        padding-top: 5px;
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 30px;
+    }
+
 </style>
 
 <!-- Javascript Functions -->
@@ -234,7 +229,8 @@
         document.getElementById("search").style.marginLeft = "20%";
         document.getElementById("words").style.marginLeft = "20%";
         document.getElementById("output").style.marginLeft = "20%";
-        document.getElementById("foot").style.marginLeft = "20%";
+        document.getElementById("footer").style.marginLeft = "20%";
+        document.getElementById("hist").style.marginLeft = "20%";
     }
 
     function closeFunction() {
@@ -244,7 +240,8 @@
         document.getElementById("search").style.marginLeft = "0";
         document.getElementById("words").style.marginLeft = "0";
         document.getElementById("output").style.marginLeft = "0";
-        document.getElementById("foot").style.marginLeft = "0";
+        document.getElementById("footer").style.marginLeft = "0";
+        document.getElementById("hist").style.marginLeft = "0";
     }
 
 </script>

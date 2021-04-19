@@ -81,7 +81,9 @@ def results(request):
     return render(request, 'main/results.html')
 
 def tickers(request):
-    result1 = ''
+    alphaResult = ''
+
+    # Scraper for
     page = requests.get('https://stockanalysis.com/stocks/')
 
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -89,7 +91,7 @@ def tickers(request):
 
     tickers_companies = table.find_all("a")
 
-    my_data =[tick.get_text() for tick in tickers_companies]
+    my_data =[tick.get_text().lower() for tick in tickers_companies]
 
     my_tickers = [data.partition('-')[0].strip() for data in my_data]
     my_companies = [data.partition('-')[2].strip() for data in my_data]
@@ -100,6 +102,14 @@ def tickers(request):
     })
     if 'ticker' in request.GET:
         ticker = request.GET.get('ticker')
-        result1 = ticker_table[ticker_table['company_name'] == ticker]['ticker_symbol']
+        result1 = ticker_table[ticker_table['company_name'] == ticker.lower()]['ticker_symbol'].to_string()
 
-    return render(request, 'main/ticker.html', {'result': result1})
+        # Only get the alpha characters
+        for char in result1:
+            if char.isalpha():
+                alphaResult += char
+
+    return render(request, 'main/ticker.html', {'result': alphaResult})
+
+def historical(request):
+    return render(request, 'main/historical.html')

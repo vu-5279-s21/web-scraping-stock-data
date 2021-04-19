@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tickers</title>
+    <title>Historical Data</title>
 </head>
 <body style="background-color: antiquewhite">
 
@@ -15,44 +15,23 @@
     <a href="{% url 'home' %}" class="link">Home</a>
     <a href="{% url 'about' %}" class="link">About</a>
     <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a>
-    <a href="{% url 'historical' %}" class="link">Historical Data</a>
+    <a href="{% url 'home' %}" class="link">Historical Data</a>
 </div>
 
-<!-- Page title -->
+<!-- Title of page -->
 <div class="title">
     <button id="button" onclick="openFunction()">&#9776;</button>
     <div id="name">
-        <h1 id="header">Tickers</h1>
+        <h1 id="header">Historical Data</h1>
     </div>
     <div id="underline">
     </div>
 </div>
 
-<!-- Search function -->
-<div>
-    <h1 id="container">
-        Enter a company name in the input field below to find its ticker
-    </h1>
-</div>
+<!-- Body text of page -->
+<div id="container">
+    <h2>Coming soon! Check back for graphs showing your favorite company's historical stock information.</h2>
 
-<div id="search">
-    <form method="GET">
-        <label for="ticker"></label>
-        <input type="text" name="ticker" id="ticker" value="{{ request.GET.ticker }}" placeholder="company..." required>
-        <input type="submit" value="Find Ticker!&#8594;" />
-    </form>
-</div>
-
-<!-- Result output -->
-<div id="result">
-    <strong> <span id="company" /> </strong>
-    <strong> {{ result | safe}}</strong> <br>
-</div>
-
-<div>
-    <p id="wording">
-        Once you've got your ticker, head back <a href="{% url 'home' %}" class="link2"> <strong>home</strong></a> to find the stock information!
-    </p>
 </div>
 </body>
 
@@ -81,32 +60,6 @@
         position: relative;
         width: 95%;
         float: right;
-    }
-
-    #container{
-        text-align: center;
-    }
-
-    input[type='text']{
-        height: 30px;
-        width: 25%;
-        border: 2px solid black;
-        border-radius: 12px;;
-        font-size: 20px;
-    }
-
-    input[type='submit']{
-        height: 40px;
-        width: 20%;
-        border: 2px solid dodgerblue;
-        border-radius: 12px;
-        color: white;
-        background-color: dodgerblue;
-        font-size: 20px;
-    }
-
-    input[type='submit']:hover{
-        cursor: pointer;
     }
 
     #button{
@@ -154,19 +107,6 @@
       color: white;
     }
 
-    #search {
-        box-sizing: border-box;
-        text-align: center;
-        margin: 0;
-    }
-
-    #result {
-        text-align: center;
-        font-size: 25px;
-        font-family: Roboto, serif;
-        color: black;
-    }
-
     #underline{
         border-bottom: 1px solid black;
         display: block;
@@ -174,19 +114,8 @@
         width: 100%;
     }
 
-    .link2{
-        color: black;
-        text-decoration: none;
-    }
-
-    .link2:hover{
-        text-decoration: underline solid black;
-    }
-
-    #wording{
-        padding-top: 35px;
+    #container{
         text-align: center;
-        font-size: 25px;
     }
 
 </style>
@@ -196,32 +125,17 @@
     function openFunction() {
         document.getElementById("mysidebar").style.width = "20%";
         document.getElementById("mysidebar").style.display = "block";
-        document.getElementById("container").style.marginLeft = "20%";
-        document.getElementById("search").style.marginLeft = "20%";
         document.getElementById("header").style.marginLeft = "20%";
-        document.getElementById("wording").style.marginLeft = "20%";
-        document.getElementById("result").style.marginLeft = "20%";
+        document.getElementById("container").style.marginLeft = "20%";
         document.getElementById("footer").style.marginLeft = "20%";
     }
 
     function closeFunction() {
         document.getElementById("mysidebar").style.width = "0";
         document.getElementById("mysidebar").style.display = "none";
-        document.getElementById("container").style.marginLeft = "0";
-        document.getElementById("search").style.marginLeft = "0";
         document.getElementById("header").style.marginLeft = "0";
-        document.getElementById("result").style.marginLeft = "0";
-        document.getElementById("wording").style.marginLeft = "0";
+        document.getElementById("container").style.marginLeft = "0";
         document.getElementById("footer").style.marginLeft = "0";
     }
-
-    function titleCase(text) {
-        return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-    }
-
-     window.addEventListener('load', () => {
-        const params = (new URL(document.location)).searchParams;
-        document.getElementById('company').innerHTML = 'Company: ' + titleCase(params.get('ticker')) + ' -- ';
-    })
 
 </script>
