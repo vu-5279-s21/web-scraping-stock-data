@@ -83,7 +83,7 @@ def results(request):
 def tickers(request):
     alphaResult = ''
 
-    # Scraper for
+    # Scraper for tickers
     page = requests.get('https://stockanalysis.com/stocks/')
 
     soup = BeautifulSoup(page.content, 'html.parser')

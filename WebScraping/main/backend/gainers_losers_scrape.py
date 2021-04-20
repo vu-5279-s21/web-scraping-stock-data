@@ -1,6 +1,8 @@
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from django.shortcuts import render
+
 
 def get_top_stocks(my_url):
     gainers_page = requests.get(my_url)
@@ -35,8 +37,21 @@ def get_top_stocks(my_url):
     gainers_data_frame = pd.DataFrame.from_dict(gainers_dict)
     gainers_data_frame.index = ['Price (Intraday)', 'Change', '%Change', 'Volume', 'Avg Vol (3 months)', 'Market Cap', 'PE Ratio (TTM)']
     gainers_data_frame = gainers_data_frame.T
-    print(gainers_data_frame)
+
+    return gainers_data_frame
+    #print(gainers_data_frame)
+
+def gainers(request):
+    result = ''
+    result = get_top_stocks('https://finance.yahoo.com/gainers').to_html()
+    return render(request, 'main/gainers.html', {'result':result})
+
+def losers(request):
+    result = ''
+    result = get_top_stocks('https://finance.yahoo.com/losers').to_html()
+    return render(request, 'main/losers.html', {'result':result})
 
 
-get_top_stocks('https://finance.yahoo.com/gainers')
-get_top_stocks('https://finance.yahoo.com/losers')
+
+# get_top_stocks('https://finance.yahoo.com/gainers')
+# get_top_stocks('https://finance.yahoo.com/losers')
