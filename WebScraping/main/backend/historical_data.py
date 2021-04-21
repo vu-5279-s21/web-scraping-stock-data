@@ -35,19 +35,24 @@ num_list_insert = 0
 tmp_lst = []
 for i in range(len(stock_list)):
     if i % 6 == 0:
-        tmp_dic = float(stock_list[i])
+        tmp_val = stock_list[i].replace(',', '')
+        tmp_dic = float(tmp_val)
         tmp_lst.append(tmp_dic)
     elif i % 6 == 1:
-        tmp_dic = float(stock_list[i])
+        tmp_val = stock_list[i].replace(',', '')
+        tmp_dic = float(tmp_val)
         tmp_lst.append(tmp_dic)
     elif i % 6 == 2:
-        tmp_dic = float(stock_list[i])
+        tmp_val = stock_list[i].replace(',', '')
+        tmp_dic = float(tmp_val)
         tmp_lst.append(tmp_dic)
     elif i % 6 == 3:
-        tmp_dic = float(stock_list[i])
+        tmp_val = stock_list[i].replace(',', '')
+        tmp_dic = float(tmp_val)
         tmp_lst.append(tmp_dic)
     elif i % 6 == 4:
-        tmp_dic = float(stock_list[i])
+        tmp_val = stock_list[i].replace(',', '')
+        tmp_dic = float(tmp_val)
         tmp_lst.append(tmp_dic)
         i += 1
         # tmp_lst.append(tmp_dic)
