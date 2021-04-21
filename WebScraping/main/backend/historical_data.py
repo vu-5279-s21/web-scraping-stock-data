@@ -90,12 +90,21 @@ while j < len(closingPrices):
 gainsLosses = pd.DataFrame({
     'Daily Gains': gainPrices,
     'Daily Losses': lossPrices})
+gainsLosses.index = hist_data_frame.index
 gainsLosses = gainsLosses.astype(float)
-hist_data_frame = hist_data_frame.iloc[::-1]
+gainsLosses.plot(grid='True')
+plt.savefig('gainsLosses.png')
 gainsLosses['gainsAvg'] = gainsLosses.iloc[:, 0].rolling(window=14).mean()
 gainsLosses['lossesAvg'] = gainsLosses.iloc[:, 1].rolling(window=14).mean().abs()
 gainsLosses['RS'] = gainsLosses['gainsAvg']/gainsLosses['lossesAvg']
 gainsLosses['RSI'] = 100 - (100/(1+gainsLosses['RS']))
+RSI_graph = gainsLosses[['RSI']]
+x_coordinates = [0, 70]
+y_coordinates = [0, 30]
+
+# plt.plot(x_coordinates, y_coordinates)
+RSI_graph.plot(grid='True')
+plt.savefig('RSI_graph.png')
 print(gainsLosses)
 
 five_day = hist_data_frame[['Adj Close', '5-Day Moving Average']]
@@ -108,12 +117,17 @@ moving_averages = hist_data_frame[
     ['5-Day Moving Average', '10-Day Moving Average', '20-Day Moving Average', '50-Day Moving Average',
      '100-Day Moving Average']]
 five_day.plot()
-# plt.savefig('test.png')
+plt.savefig('five_day.png')
 ten_day.plot()
+plt.savefig('ten_day.png')
 twenty_day.plot()
+plt.savefig('twenty_day.png')
 fifty_day.plot()
+plt.savefig('fifty_day.png')
 hundred_day.plot()
+plt.savefig('hundred_day.png')
 short_long.plot()
+plt.savefig('short_long.png')
 moving_averages.plot()
-
-plt.show()
+plt.savefig('moving_averages.png')
+# plt.show()
