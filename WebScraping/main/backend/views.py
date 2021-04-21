@@ -110,6 +110,3 @@ def tickers(request):
                 alphaResult += char
 
     return render(request, 'main/ticker.html', {'result': alphaResult})
-
-def historical(request):
-    return render(request, 'main/historical.html')

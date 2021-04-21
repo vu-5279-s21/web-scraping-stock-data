@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,7 +35,10 @@
 <!-- Body text of page -->
 <div id="container">
     <h2>Coming soon! Check back for graphs showing your favorite company's historical stock information.</h2>
+</div>
 
+<div>
+    <img src="{% static 'graphImages/fifty_day.png' %}">
 </div>
 </body>
 
