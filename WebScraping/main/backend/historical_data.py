@@ -114,7 +114,7 @@ def historical(request):
         ax = RSI_graph.plot(grid='True')
         ax.axhline(y=70, color='r', linestyle='--', lw=2)
         ax.axhline(y=30, color='g', linestyle='--', lw=2)
-        plt.savefig('../../static/graphImages/RSI_graph.png')
+       # plt.savefig('../../static/graphImages/RSI_graph.png')
         # print(gainsLosses)
 
         five_day = hist_data_frame[['Adj Close', '5-Day Moving Average']]
