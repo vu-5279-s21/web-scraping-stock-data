@@ -122,6 +122,11 @@ def historical(request):
         ax = RSI_graph.plot(grid='True')
         ax.axhline(y=70, color='r', linestyle='--', lw=2)
         ax.axhline(y=30, color='g', linestyle='--', lw=2)
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        rsiGraphImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
        # plt.savefig('../../static/graphImages/RSI_graph.png')
         # print(gainsLosses)
 
@@ -135,21 +140,74 @@ def historical(request):
             ['5-Day Moving Average', '10-Day Moving Average', '20-Day Moving Average', '50-Day Moving Average',
              '100-Day Moving Average']]
         five_day.plot()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        fiveDayImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/five_day.png')
         ten_day.plot()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        tenDayImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/ten_day.png')
         twenty_day.plot()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        twentyDayImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/twenty_day.png')
         fifty_day.plot()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        fiftyDayImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/fifty_day.png')
         hundred_day.plot()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        hundredDayImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/hundred_day.png')
         short_long.plot()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        shortLongImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/short_long.png')
         moving_averages.plot()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        movingAveragesImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/moving_averages.png')
         # plt.show()
 
-        return render(request, 'main/historical.html', {'result': result, 'gainsLossesImage': gainsLossesImage})
+        return render(request, 'main/historical.html', {
+            'result': result,
+            'gainsLossesImage': gainsLossesImage,
+            'rsiGraphImage': rsiGraphImage,
+            'fiveDayImage': fiveDayImage,
+            'tenDayImage': tenDayImage,
+            'twentyDayImage': twentyDayImage,
+            'fiftyDayImage': fiftyDayImage,
+            'hundredDayImage': hundredDayImage,
+            'shortLongImage': shortLongImage,
+            'movingAveragesImage': movingAveragesImage
+        })
     else:
         return render(request, 'main/historical.html')
