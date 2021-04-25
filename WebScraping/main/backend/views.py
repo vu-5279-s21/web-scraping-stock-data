@@ -63,6 +63,7 @@ def home(request):
             'value': metric_values
         })
 
+
         result = stock_data.to_html(header=False, index=False)
         return render(request, 'main/results.html', {'result': result})
     else:

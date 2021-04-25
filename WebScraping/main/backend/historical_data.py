@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -104,6 +106,12 @@ def historical(request):
         gainsLosses.index = hist_data_frame.index
         gainsLosses = gainsLosses.astype(float)
         gainsLosses.plot(grid='True')
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png', dpi=300)
+        gainsLossesImage = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+        buf.close()
+
         #plt.savefig('../../static/graphImages/gainsLosses.png')
         gainsLosses['gainsAvg'] = gainsLosses.iloc[:, 0].rolling(window=14).mean()
         gainsLosses['lossesAvg'] = gainsLosses.iloc[:, 1].rolling(window=14).mean().abs()
@@ -142,6 +150,6 @@ def historical(request):
         #plt.savefig('../../static/graphImages/moving_averages.png')
         # plt.show()
 
-        return render(request, 'main/historical.html', {'result': result})
+        return render(request, 'main/historical.html', {'result': result, 'gainsLossesImage': gainsLossesImage})
     else:
         return render(request, 'main/historical.html')
