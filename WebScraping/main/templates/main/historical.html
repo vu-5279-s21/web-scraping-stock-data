@@ -32,14 +32,24 @@
     </div>
 </div>
 
-<!-- Body text of page -->
-<div id="container">
-    <h2>Coming soon! Check back for graphs showing your favorite company's historical stock information.</h2>
+<!-- Search bar -->
+<div id="search">
+    <p id="blurb2">
+        Let's get started! <br>
+        To find historical information about particular stocks, enter the company ticker below. <br>
+    </p>
+    <form method="GET">
+        <label for="company"></label>
+        <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="Ticker..." required>
+        <input type="submit" value="Explore Historical Data!&#8594;" />
+    </form>
 </div>
 
-<div>
-    <img src="{% static 'graphImages/fifty_day.png' %}">
+<!-- Body text of page -->
+<div id="container">
+    <h2>Coming soon! Check back for graphs showing your favorite company's historical stock information!</h2>
 </div>
+
 </body>
 
 <!-- Footer -->
@@ -123,6 +133,43 @@
 
     #container{
         text-align: center;
+    }
+
+    #blurb1{
+        font-size: 55px;
+    }
+
+    #blurb2 {
+        font-size: 35px;
+    }
+
+    #search {
+        padding-top: 50px;
+        box-sizing: border-box;
+        text-align: center;
+        margin: 0;
+    }
+
+    input[type='text']{
+        height: 30px;
+        width: 25%;
+        border: 2px solid black;
+        border-radius: 12px;;
+        font-size: 20px;
+    }
+
+    input[type='submit']{
+        height: 40px;
+        width: 20%;
+        border: 2px solid dodgerblue;
+        border-radius: 12px;
+        color: white;
+        background-color: dodgerblue;
+        font-size: 20px;
+    }
+
+    input[type='submit']:hover{
+        cursor: pointer;
     }
 
 </style>
