@@ -1,46 +1,92 @@
+
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Basic Stock Evaluation</title>
+    <title>Stock Evaluator</title>
+
 </head>
-<body>
+
+<body style="background-color: antiquewhite">
 
 <!-- Interactive Sidebar -->
 <div class="sidebar" style="display:none" id="mysidebar">
     <a href="javascript:void(0)" onclick="closeFunction()" class="close">Close &times;</a>
     <a href="{% url 'home' %}" class="link">Home</a>
     <a href="{% url 'about' %}" class="link">About</a>
-    <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a>
+   <!-- <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a> -->
     <a href="{% url 'home' %}" class="link">Historical Data</a>
+    <a href="{% url 'gainers' %}" class="link">Daily Stock Gainers</a>
+    <a href="{% url 'losers' %}" class="link">Daily Stock Losers</a>
 </div>
 
+<!-- Title of Page -->
 <div class="title">
     <button id="button" onclick="openFunction()">&#9776;</button>
     <div id="name">
-        <h1 id="header">Basic Stock Evaluation</h1>
+        <h4 id="header">Basic Stock Evaluator</h4>
+    </div>
+    <div id="underline">
     </div>
 </div>
 
+<div>
+<!-- Input field to enter a company name -->
+<div id="search">
+    <h1 id="blurb1">
+        A stock evaluator with the click of a <span style="color: purple"> button </span>
+    </h1>
+    <p id="blurb2">
+        Would you like to know how it works? <br>
+        Enter the company or ticker name and see if our algorithm recommends the stock!<br>
+    </p>
+
+</div>
+
+<!-- Page Content -->
+<div class="text">
+
+
+
+</div>
+</div>
+
+ <footer id="foot">
+      <hr>
+        <div class="container text-center">
+        <h3>Thanks for visiting</h3>
+        <p>This material and all its applications are meant for educational purposes only and not financial advice</p>
+        <hr>
+        <p>&copy; Copyright 2021</p>
+      </div><!-- end Container-->
+ </footer>
+
 </body>
+
 </html>
 
+<!-- Should we move these sections to another file? -->
+
+<!-- CSS -->
 <style>
     #name {
-        width: 100%;
+        width: 95%;
         margin: auto;
         font-family: Roboto, serif;
-        text-align: center;
         font-size: 30px;
         position: relative;
+        float: right;
+        text-align: right;
+        padding-right: 10px;
+        padding-top: 30px;
     }
 
     .title {
-        background-color: slategray;
-        height: 25%;
+        height: 20px;
         position: absolute;
         top: 0;
         left: 0;
@@ -48,12 +94,45 @@
         clear: both;
     }
 
+    #underline{
+        border-bottom: 1px solid black;
+        display: block;
+        padding-top: 50px;
+        width: 100%;
+    }
+
+    .text{
+        padding-top: 35px;
+    }
+
+    #words{
+        text-align: left;
+        float: left;
+        width: 25%;
+        font-size: 30px;
+    }
+
+    #blurb1{
+        font-size: 55px;
+    }
+
+    #blurb2 {
+        font-size: 35px;
+    }
+
+    #search {
+        padding-top: 100px;
+        box-sizing: border-box;
+        text-align: center;
+        margin: 0;
+    }
+
     #mysidebar{
         width: 25%;
     }
 
     #button{
-        background-color: slategray;
+        background-color: antiquewhite;
         font-size: 40px;
         border: none;
     }
@@ -69,23 +148,32 @@
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: slategray;
+      background-color: black;
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
+    }
+
+    .link2{
+        color: black;
+        text-decoration: none;
+    }
+
+    .link2:hover{
+        text-decoration: underline black;
     }
 
     .sidebar a {
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 25px;
-      color: black;
+      color: white;
       display: block;
       transition: 0.3s;
     }
 
     .sidebar a:hover {
-      color: white;
+        text-decoration: underline;
     }
 
     .sidebar .close {
@@ -94,22 +182,55 @@
       right: 25px;
       font-size: 25px;
       margin-left: 50px;
-      color: black;
+      color: white;
+    }
+
+    input[type='text']{
+        height: 30px;
+        width: 25%;
+        border: 2px solid black;
+        border-radius: 12px;;
+        font-size: 20px;
+    }
+
+    input[type='submit']{
+        height: 40px;
+        width: 20%;
+        border: 2px solid dodgerblue;
+        border-radius: 12px;
+        color: white;
+        background-color: dodgerblue;
+        font-size: 20px;
+    }
+
+    input[type='submit']:hover{
+        cursor: pointer;
     }
 
 </style>
 
+<!-- Javascript Functions -->
 <script>
     function openFunction() {
         document.getElementById("mysidebar").style.width = "20%";
         document.getElementById("mysidebar").style.display = "block";
         document.getElementById("header").style.marginLeft = "20%";
+        document.getElementById("search").style.marginLeft = "20%";
+        document.getElementById("words").style.marginLeft = "20%";
+        document.getElementById("output").style.marginLeft = "20%";
+        document.getElementById("foot").style.marginLeft = "20%";
     }
 
     function closeFunction() {
         document.getElementById("mysidebar").style.width = "0";
         document.getElementById("mysidebar").style.display = "none";
         document.getElementById("header").style.marginLeft = "0";
+        document.getElementById("search").style.marginLeft = "0";
+        document.getElementById("words").style.marginLeft = "0";
+        document.getElementById("output").style.marginLeft = "0";
+        document.getElementById("foot").style.marginLeft = "0";
     }
+
+
 
 </script>

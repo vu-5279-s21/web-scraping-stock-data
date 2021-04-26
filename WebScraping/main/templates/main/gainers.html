@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tickers</title>
+</head>
+<body style="background-color: antiquewhite">
+
+<!-- Interactive Sidebar -->
+<div class="sidebar" style="display:none" id="mysidebar">
+    <a href="javascript:void(0)" onclick="closeFunction()" class="close">Close &times;</a>
+    <a href="{% url 'home' %}" class="link">Home</a>
+    <a href="{% url 'about' %}" class="link">About</a>
+   <!-- <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a> -->
+    <a href="{% url 'historical' %}" class="link">Historical Data</a>
+    <a href="{% url 'gainers' %}" class="link">Daily Stock Gainers</a>
+    <a href="{% url 'losers' %}" class="link">Daily Stock Losers</a>
+</div>
+
+<!-- Page title -->
+<div class="title">
+    <button id="button" onclick="openFunction()">&#9776;</button>
+    <div id="name">
+        <h1 id="header">Gainers</h1>
+    </div>
+    <div id="underline">
+    </div>
+</div>
+
+<!-- Search function -->
+<div id="container">
+    <p> <strong>Check out the day's biggest gainers!</strong></p>
+</div>
+
+<div id="result">
+    {{ result | safe}}
+</div>
+</body>
+
+<!-- Footer -->
+ <footer>
+      <hr>
+        <div class="container text-center">
+        <div id="footer">
+            <h3>Thanks for visiting</h3>
+            <p>This material and all its applications are meant for educational purposes only and not financial advice</p>
+            <hr>
+            <p>&copy; Copyright 2021</p>
+        </div>
+
+      </div><!-- end Container-->
+ </footer>
+</html>
+
+<!-- CSS -->
+<style>
+    #name {
+        margin: auto;
+        font-family: Roboto, serif;
+        text-align: center;
+        font-size: 30px;
+        position: relative;
+        width: 95%;
+        float: right;
+    }
+
+    #container{
+        text-align: center;
+        font-size: 35px;
+    }
+
+    #button{
+        background-color: antiquewhite;
+        font-size: 40px;
+        border: none;
+    }
+
+    #button:hover {
+        cursor: pointer;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: black;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+        text-decoration: underline;
+    }
+
+    .sidebar .close {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 25px;
+      margin-left: 50px;
+      color: white;
+    }
+
+    #underline{
+        border-bottom: 1px solid black;
+        display: block;
+        padding-top: 50px;
+        width: 100%;
+    }
+
+    #result{
+        padding-left: 200px;
+    }
+
+
+</style>
+
+<!-- Javascript Functions -->
+<script>
+    function openFunction() {
+        document.getElementById("mysidebar").style.width = "20%";
+        document.getElementById("mysidebar").style.display = "block";
+        document.getElementById("container").style.marginLeft = "20%";
+        document.getElementById("header").style.marginLeft = "20%";
+        document.getElementById("footer").style.marginLeft = "20%";
+        document.getElementById("result").style.marginLeft = "20%";
+    }
+
+    function closeFunction() {
+        document.getElementById("mysidebar").style.width = "0";
+        document.getElementById("mysidebar").style.display = "none";
+        document.getElementById("container").style.marginLeft = "0";
+        document.getElementById("header").style.marginLeft = "0";
+        document.getElementById("footer").style.marginLeft = "0";
+        document.getElementById("result").style.marginLeft = "0";
+    }
+
+</script>

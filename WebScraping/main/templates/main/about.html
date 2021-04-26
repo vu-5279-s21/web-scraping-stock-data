@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -17,29 +19,36 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="background-color: antiquewhite">
 
 <!-- Interactive Sidebar -->
 <div class="sidebar" style="display:none" id="mysidebar">
     <a href="javascript:void(0)" onclick="closeFunction()" class="close">Close &times;</a>
     <a href="{% url 'home' %}" class="link">Home</a>
     <a href="{% url 'about' %}" class="link">About</a>
-    <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a>
-    <a href="{% url 'home' %}" class="link">Historical Data</a>
+   <!-- <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a> -->
+    <a href="{% url 'historical' %}" class="link">Historical Data</a>
+    <a href="{% url 'gainers' %}" class="link">Daily Stock Gainers</a>
+    <a href="{% url 'losers' %}" class="link">Daily Stock Losers</a>
 </div>
 
+<!-- Title of Page -->
 <div class="title">
     <button id="button" onclick="openFunction()">&#9776;</button>
     <div id="name">
-        <h1 id="header">Web Stock Scraping & Data Analysis</h1>
+        <h1 id="header">About</h1>
+    </div>
+    <div id="underline">
     </div>
 </div>
 
 
 <div id="page">
-    <div class="container", style="padding-top: 200px">
+    <div class="container" style="padding-top: 110px">
+
 
 		<div>
+            <!-- Heading for info -->
 			<div class="page-header" id="About me">
   				<h2>About our project</h2>
   			</div><!-- End Page Header -->
@@ -51,18 +60,19 @@
   					<p>We find the price of stocks currently and show their historical data!</p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="stocks.jpg" class="img-responsive" alt="image">
-  				</div>
+  					<img src="{% static 'images/stocks.jpg' %}" class="img-responsive" alt="image">
+                </div>
   			</div><!-- End row -->
 
 
   			<div class="row">
   				<div class="col-sm-8">
   					<h3>Web Scraping</h3>
-  					<p>We scrape the web for mentions of stocks in highly cited pages!</p>
+  					<p>Web scrape the web for mentions of stocks in highly cited pages!</p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="scraping.jpg" class="img-responsive" alt="image">
+                    {% load static %}
+  					<img src="{% static "images/scraping.jpg" %}" class="img-responsive" alt="image">
   				</div>
   			</div><!-- End row -->
 
@@ -73,7 +83,7 @@
   					<p>We then do a sentiment analysis to find whether or not the stock you picked has a positive or negative engagement!</p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="sentiment.jpg" class="img-responsive" alt="image">
+  					<img src="{% static 'images/sentiment.jpg' %}" class="img-responsive" alt="image">
   				</div>
   			</div><!-- End row -->
 
@@ -94,21 +104,21 @@
 
   				<div class="carousel-inner">
   					<div class="item active">
-  						<img src="syed.jpg" alt="Text of the image">
+  						<img src="{% static 'images/syed.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
   							<p>Syed Rahman</p>
   						</div>
   					</div>
 
   					<div class="item">
-  						<img src="chris.jpg" alt="Text of the image">
+  						<img src="{% static 'images/ChrisR.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
   							<p>Chris Rorex</p>
   						</div>
   					</div>
 
   					<div class="item">
-  						<img src="may.jpg" alt="Text of the image">
+  						<img src="{% static 'images/may.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
   							<p>May Liu</p>
 
@@ -116,7 +126,7 @@
   					</div>
 
   					<div class="item">
-  						<img src="derek.jpg" alt="Text of the image">
+  						<img src="{% static 'images/derek.jpg' %}" alt="Text of the image">
   						<div class="carousel-caption">
 							<p>Derek Pang</p>
 
@@ -139,33 +149,43 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
-</html>
 
-<!-- Should we move these sections to another file? -->
+ <footer id="footer">
+      <hr>
+        <div class="container text-center">
+        <h3>Thanks for visiting</h3>
+        <p>This material and all its applications are meant for educational purposes only and not financial advice</p>
+        <hr>
+        <p>&copy; Copyright 2021</p>
+
+      </div><!-- end Container-->
+
+    </footer>
+</html>
 
 <!-- CSS -->
 <style>
     #name {
-        width: 100%;
         margin: auto;
         font-family: Roboto, serif;
         text-align: center;
         font-size: 30px;
         position: relative;
+        width: 95%;
+        float: right;
     }
 
     .title {
-        background-color: slategray;
-        height: 25%;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         clear: both;
+        height: 10%;
     }
 
     #button{
-        background-color: slategray;
+        background-color: antiquewhite;
         font-size: 40px;
         border: none;
     }
@@ -185,7 +205,7 @@
       z-index: 1;
       top: 0;
       left: 0;
-      background-color: slategray;
+      background-color: black;
       overflow-x: hidden;
       transition: 0.5s;
       padding-top: 60px;
@@ -195,13 +215,13 @@
       padding: 8px 8px 8px 32px;
       text-decoration: none;
       font-size: 25px;
-      color: black;
+      color: white;
       display: block;
       transition: 0.3s;
     }
 
     .sidebar a:hover {
-      color: white;
+      text-decoration: underline;
     }
 
     .sidebar .close {
@@ -210,9 +230,19 @@
       right: 25px;
       font-size: 25px;
       margin-left: 50px;
-      color: black;
+      color: white;
     }
 
+    .col-sm-4{
+        padding-bottom: 20px
+    }
+
+    #underline{
+        border-bottom: 1px solid black;
+        display: block;
+        padding-top: 50px;
+        width: 100%;
+    }
 </style>
 
 <!-- Javascript Functions -->
@@ -221,12 +251,16 @@
         document.getElementById("mysidebar").style.width = "20%";
         document.getElementById("mysidebar").style.display = "block";
         document.getElementById("page").style.marginLeft = "20%";
+        document.getElementById("footer").style.marginLeft = "20%";
+
     }
 
     function closeFunction() {
         document.getElementById("mysidebar").style.width = "0";
         document.getElementById("mysidebar").style.display = "none";
         document.getElementById("page").style.marginLeft = "0";
+        document.getElementById("footer").style.marginLeft = "0";
+
     }
 
 </script>

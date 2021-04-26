@@ -63,8 +63,9 @@ def home(request):
             'value': metric_values
         })
 
+
         result = stock_data.to_html(header=False, index=False)
-        return render(request, 'main/home.html', {'result': result})
+        return render(request, 'main/results.html', {'result': result})
     else:
         return render(request, 'main/home.html')
 
@@ -80,3 +81,33 @@ def about(request):
 def results(request):
     return render(request, 'main/results.html')
 
+def tickers(request):
+    alphaResult = ''
+
+    # Scraper for tickers
+    page = requests.get('https://stockanalysis.com/stocks/')
+
+    soup = BeautifulSoup(page.content, 'html.parser')
+    table = soup.find(class_='no-spacing')
+
+    tickers_companies = table.find_all("a")
+
+    my_data =[tick.get_text().lower() for tick in tickers_companies]
+
+    my_tickers = [data.partition('-')[0].strip() for data in my_data]
+    my_companies = [data.partition('-')[2].strip() for data in my_data]
+
+    ticker_table = pd.DataFrame({
+        'ticker_symbol': my_tickers,
+        'company_name': my_companies
+    })
+    if 'ticker' in request.GET:
+        ticker = request.GET.get('ticker')
+        result1 = ticker_table[ticker_table['company_name'] == ticker.lower()]['ticker_symbol'].to_string()
+
+        # Only get the alpha characters
+        for char in result1:
+            if char.isalpha():
+                alphaResult += char
+
+    return render(request, 'main/ticker.html', {'result': alphaResult})
