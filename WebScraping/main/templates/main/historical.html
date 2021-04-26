@@ -16,8 +16,8 @@
     <a href="javascript:void(0)" onclick="closeFunction()" class="close">Close &times;</a>
     <a href="{% url 'home' %}" class="link">Home</a>
     <a href="{% url 'about' %}" class="link">About</a>
-   <!-- <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a> -->
-    <a href="{% url 'home' %}" class="link">Historical Data</a>
+    <!-- <a href="{% url 'recApp' %}" class="link">Basic Stock Evaluation</a> -->
+    <a href="{% url 'historical' %}" class="link">Historical Data</a>
     <a href="{% url 'gainers' %}" class="link">Daily Stock Gainers</a>
     <a href="{% url 'losers' %}" class="link">Daily Stock Losers</a>
 </div>
@@ -40,45 +40,89 @@
     </p>
     <form method="GET">
         <label for="company"></label>
-        <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="Ticker..." required>
-        <input type="submit" value="Explore Historical Data!&#8594;" />
+        <input type="text" name="company" id="company" value="{{ request.GET.company }}" placeholder="Ticker..."
+               required>
+        <input type="submit" value="Explore Historical Data!&#8594;"/>
     </form>
 </div>
+<div id="images">
 
-<img src="data:image/png;base64,{{gainsLossesImage}}" alt="" width=500 height=auto />
-<img src="data:image/png;base64,{{rsiGraphImage}}" alt="" width=500 height=auto />
-<img src="data:image/png;base64,{{fiveDayImage}}" alt="" width=500 height=auto />
-<img src="data:image/png;base64,{{tenDayImage}}" alt="" width=500 height=auto />
-<img src="data:image/png;base64,{{twentyDayImage}}" alt="" width=500 height=auto />
-<img src="data:image/png;base64,{{hundredDayImage}}" alt="" width=500 height=auto />
-<img src="data:image/png;base64,{{shortLongImage}}" alt="" width=500 height=auto />
-<img src="data:image/png;base64,{{movingAveragesImage}}" alt="" width=500 height=auto />
+    <div id="img">
+
+        <img src="data:image/png;base64,{{ gainsLossesImage }}" alt="" width=500 height=auto/>
+        <p> Gains and Losses </p>
+    </div>
+
+    <div id="img">
+
+        <img src="data:image/png;base64,{{ rsiGraphImage }}" alt="" width=500 height=auto/>
+        <p> Relative Strength Index </p>
+
+    </div>
+    <div id="img">
+        <img src="data:image/png;base64,{{ fiveDayImage }}" alt="" width=500 height=auto/>
+        <p> Five Day Moving Average </p>
+    </div>
+
+    <div id="img">
+
+        <img src="data:image/png;base64,{{ tenDayImage }}" alt="" width=500 height=auto/>
+        <p> Ten Day Moving Average </p>
+
+    </div>
+    <div id="img">
+
+        <img src="data:image/png;base64,{{ twentyDayImage }}" alt="" width=500 height=auto/>
+        <p> Twenty Day Moving Average </p>
+
+    </div>
+
+    <div id="img">
+
+        <img src="data:image/png;base64,{{ hundredDayImage }}" alt="" width=500 height=auto/>
+        <p> One Hundred Day Moving Average </p>
+
+    </div>
+
+    <div id="img">
+
+        <img src="data:image/png;base64,{{ shortLongImage }}" alt="" width=500 height=auto/>
+        <p> Moving Average compared to Close </p>
+
+    </div>
+
+    <div id="img">
+
+        <img src="data:image/png;base64,{{ movingAveragesImage }}" alt="" width=500 height=auto/>
+        <p> Moving Average Overall </p>
+
+    </div>
+</div>
 
 <div id="result">
-    {{ result | safe}}
+    {{ result | safe }}
 </div>
 
 
 <!-- Body text of page -->
-<div id="container">
-    <h2>Coming soon! Check back for graphs showing your favorite company's historical stock information!</h2>
-</div>
+
 
 </body>
 
 <!-- Footer -->
- <footer>
-      <hr>
-        <div class="container text-center">
+<footer>
+    <hr>
+    <div class="container text-center">
         <div id="footer">
             <h3>Thanks for visiting</h3>
-            <p>This material and all its applications are meant for educational purposes only and not financial advice</p>
+            <p>This material and all its applications are meant for educational purposes only and not financial
+                advice</p>
             <hr>
             <p>&copy; Copyright 2021</p>
         </div>
 
-      </div><!-- end Container-->
- </footer>
+    </div><!-- end Container-->
+</footer>
 </html>
 
 <!-- CSS -->
@@ -93,7 +137,7 @@
         float: right;
     }
 
-    #button{
+    #button {
         background-color: antiquewhite;
         font-size: 40px;
         border: none;
@@ -104,25 +148,25 @@
     }
 
     .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      background-color: black;
-      overflow-x: hidden;
-      transition: 0.5s;
-      padding-top: 60px;
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: black;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
     }
 
     .sidebar a {
-      padding: 8px 8px 8px 32px;
-      text-decoration: none;
-      font-size: 25px;
-      color: white;
-      display: block;
-      transition: 0.3s;
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
     }
 
     .sidebar a:hover {
@@ -130,22 +174,22 @@
     }
 
     .sidebar .close {
-      position: absolute;
-      top: 0;
-      right: 25px;
-      font-size: 25px;
-      margin-left: 50px;
-      color: white;
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 25px;
+        margin-left: 50px;
+        color: white;
     }
 
-    #underline{
+    #underline {
         border-bottom: 1px solid black;
         display: block;
         padding-top: 50px;
         width: 100%;
     }
 
-    #container{
+    #container {
         text-align: center;
     }
 
@@ -160,7 +204,7 @@
         margin: 0;
     }
 
-    input[type='text']{
+    input[type='text'] {
         height: 30px;
         width: 25%;
         border: 2px solid black;
@@ -168,7 +212,7 @@
         font-size: 20px;
     }
 
-    input[type='submit']{
+    input[type='submit'] {
         height: 40px;
         width: 20%;
         border: 2px solid dodgerblue;
@@ -178,14 +222,28 @@
         font-size: 20px;
     }
 
-    input[type='submit']:hover{
+    input[type='submit']:hover {
         cursor: pointer;
     }
 
-    #result{
+    #result {
+        padding-top: 40px;
+        padding-left: 600px;
+    }
+
+    #images {
         padding-top: 40px;
         padding-left: 180px;
     }
+
+    #img {
+        padding-top: 40px;
+        font-family: Roboto, serif;
+        font-size: 30px;
+        text-align: center;
+
+    }
+
 
 </style>
 
@@ -198,6 +256,8 @@
         document.getElementById("container").style.marginLeft = "20%";
         document.getElementById("footer").style.marginLeft = "20%";
         document.getElementById("result").style.marginLeft = "20%";
+        document.getElementById("blurb2").style.marginLeft = "20%";
+
     }
 
     function closeFunction() {
@@ -206,7 +266,9 @@
         document.getElementById("header").style.marginLeft = "0";
         document.getElementById("container").style.marginLeft = "0";
         document.getElementById("footer").style.marginLeft = "0";
-        document.getElementById("result").style.marginLeft = "0";
+        document.getElementById("result").style.marginLeft = "0"
+        document.getElementById("blurb2").style.marginLeft = "0";
+
     }
 
 </script>
