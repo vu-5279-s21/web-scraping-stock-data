@@ -73,6 +73,7 @@ def historical(request):
         hist_data_frame = hist_data_frame.T
         hist_data_frame = hist_data_frame.iloc[::-1]
         hist_data_frame.plot(grid='True')
+        result = hist_data_frame.to_html()
 
         hist_data_frame['5-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=5).mean()
         hist_data_frame['10-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=10).mean()
@@ -80,7 +81,6 @@ def historical(request):
         hist_data_frame['50-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=50).mean()
         hist_data_frame['100-Day Moving Average'] = hist_data_frame.iloc[:, 4].rolling(window=100).mean()
         print(hist_data_frame)
-        result = hist_data_frame.to_html()
 
         closingPrices = hist_data_frame.iloc[:, 4]
 
