@@ -12,8 +12,12 @@ This project utilizes the following technologies:
 - Javascript
 
 # Important: In order to use the historical data feature, please follow these instructions to implement a chrome driver!
+Note: This piece of the application currently only works on Windows systems.
+Follow the instructions on the following website to download the chrome driver. Be sure to download the driver that is associated with the version of google chrome that you are running. 
 
+https://chromedriver.chromium.org/downloads
 
+Once the driver is downloaded, add it to the c:\\Program Files folder.. 
 
 
 Disclaimer: This material and all its applications are meant for educational purposes only and not financial advice.
