@@ -20,4 +20,4 @@ Follow the instructions on the following website to download the chrome driver. 
 
 https://chromedriver.chromium.org/downloads
 
-Once the driver is downloaded, add it to the c:\\Program Files folder.. 
+Once the driver is downloaded, add it to the c:\\Program Files folder.
