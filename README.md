@@ -11,6 +11,8 @@ This project utilizes the following technologies:
 - HTML/CSS
 - Javascript
 
+Disclaimer: This material and all its applications are meant for educational purposes only and not financial advice.
+
 # Important: In order to use the historical data feature, please follow these instructions to implement a chrome driver!
 Note: This piece of the application currently only works on Windows systems.
 
@@ -19,6 +21,3 @@ Follow the instructions on the following website to download the chrome driver. 
 https://chromedriver.chromium.org/downloads
 
 Once the driver is downloaded, add it to the c:\\Program Files folder.. 
-
-
-Disclaimer: This material and all its applications are meant for educational purposes only and not financial advice.
